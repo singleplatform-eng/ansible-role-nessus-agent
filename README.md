@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/singleplatform-eng/ansible-role-nessus-agent.svg?branch=master)](https://travis-ci.org/singleplatform-eng/ansible-role-nessus-agent)
+
 ansible-role-nessus-agent
 =========
 
