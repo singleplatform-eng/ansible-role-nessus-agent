@@ -1,0 +1,25 @@
+---
+
+- name: Install Nessus Agent from repo
+  package: name={{nessus_agent_package}}
+  when: "'.deb' not in nessus_agent_package"
+
+- name: Install Nessus Agent from .deb package
+  apt: deb={{nessus_agent_package}}
+  when: "'.deb' in nessus_agent_package"
+
+- name: Check agent link status
+  command: /opt/nessus_agent/sbin/nessuscli agent status
+  register: nessus_link_status
+
+- name: Configure Nessus Agent
+  command: >
+      /opt/nessus_agent/sbin/nessuscli agent link
+      --key={{nessus_agent_key}}
+      --host={{nessus_agent_host}}
+      --port={{nessus_agent_port}}
+  when: "'is not linked' in nessus_link_status.stdout"
+  notify: restart nessusagent
+
+- name: Ensure nessusagent is started
+  service: name=nessusagent state=started enabled=yes
