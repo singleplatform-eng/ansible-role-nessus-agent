@@ -6,6 +6,17 @@ Ansible role for installing and configuring Nessus Agent
 Role Variables
 --------------
 
+- `nessus_agent_key`: key used for linking with nessus host (this is a required variable)
+
+- `nessus_agent_host`: nessus host to link with (default: `cloud.tenable.com`)
+
+- `nessus_agent_port`: nessus host port (default: `443`)
+
+- `nessus_agent_package`: can be either a repository package or a path to a file (default: `NessusAgent`)
+
+        nessus_agent_package: nessus-agent 
+        nessus_agent_package: /tmp/nessus-agent_6.8.1_amd64.deb
+
 Example Playbook
 ----------------
 
@@ -19,7 +30,7 @@ Example Playbook
 Author Information
 ------------------
 
-SinglePlatform Engineering
+[SinglePlatform Engineering](http://engineering.singleplatform.com/)
 
 License
 -------
