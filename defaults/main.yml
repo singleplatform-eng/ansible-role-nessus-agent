@@ -1,13 +1,12 @@
 ---
 
-# This can be set to either a package from a
-# repo or a path to a package file
-#
-#   nessus_agent_package: nessus-agent
-#   nessus_agent_package: /tmp/nessus-agent_6.8.1_amd64.deb
+# required variable
+#nessus_agent_key: ''
+
+# can be either a repository package or a path to a file
+#     nessus_agent_package: nessus-agent
+#     nessus_agent_package: /tmp/nessus-agent_6.8.1_amd64.deb
 nessus_agent_package: 'NessusAgent'
 
-# nessus_agent_key is a required variable
-#nessus_agent_key: ''
 nessus_agent_host: cloud.tenable.com
 nessus_agent_port: 443
