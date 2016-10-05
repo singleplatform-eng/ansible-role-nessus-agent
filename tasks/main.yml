@@ -10,7 +10,8 @@
 
 - name: Check agent link status
   command: /opt/nessus_agent/sbin/nessuscli agent status
-  register: nessus_link_status
+  ignore_errors: yes
+  register: nessus_link
 
 - name: Configure Nessus Agent
   command: >
@@ -18,7 +19,7 @@
       --key={{nessus_agent_key}}
       --host={{nessus_agent_host}}
       --port={{nessus_agent_port}}
-  when: "'is not linked' in nessus_link_status.stdout"
+  when: nessus_link|failed
   notify: restart nessusagent
 
 - name: Ensure nessusagent is started
