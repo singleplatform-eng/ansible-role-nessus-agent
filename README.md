@@ -5,6 +5,8 @@ ansible-role-nessus-agent
 
 Ansible role for installing and configuring Nessus Agent
 
+https://galaxy.ansible.com/singleplatform-eng/nessus-agent/
+
 Role Variables
 --------------
 
