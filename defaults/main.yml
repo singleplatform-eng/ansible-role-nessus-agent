@@ -2,6 +2,7 @@
 
 # required variable
 #nessus_agent_key: ''
+#nessus_agent_group: ''
 
 # can be either a repository package or a path to a file
 #     nessus_agent_package: nessus-agent
