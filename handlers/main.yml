@@ -2,3 +2,8 @@
 
 - name: restart nessusagent
   service: name=nessusagent state=restarted
+  when: ansible_distribution == 'Ubuntu'
+  
+- name: restart nessusagent
+  service: name=nessusagent state=restarted
+  when: ansible_os_family == 'RedHat'

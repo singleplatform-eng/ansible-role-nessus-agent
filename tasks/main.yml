@@ -1,12 +1,18 @@
 ---
 
-- name: Install Nessus Agent from repo
-  package: name={{nessus_agent_package}}
-  when: "'.deb' not in nessus_agent_package"
+- name: Ensure dependencies are installed.
+  apt:
+    name:
+      - curl
+      - apt-transport-https
+    state: installed
 
-- name: Install Nessus Agent from .deb package
+- include: RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: Ubuntu.yml
   apt: deb={{nessus_agent_package}}
-  when: "'.deb' in nessus_agent_package"
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Check agent link status
   command: /opt/nessus_agent/sbin/nessuscli agent status

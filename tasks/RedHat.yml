@@ -1,0 +1,14 @@
+---
+# pkg string based on https://www.tenable.com/products/nessus/agent-download
+# NessusAgent-6.11.1-es7.x86_64.rpm
+  
+- name: Download Redhat specific Nessus version.
+  get_url:
+    url: "{{ nessus_s3_url }}/NessusAgent-{{ nessus_version }}-es7.x86_64.rpm"
+    dest: "/tmp/NessusAgent-{{ nessus_version }}-es7.x86_64.rpm"
+  when: nessus_version is defined
+
+- name: Install RPM package.
+  yum:
+     name: /tmp/NessusAgent-{{ nessus_version }}-es7.x86_64.rpm
+     state: present
