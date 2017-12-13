@@ -1,0 +1,13 @@
+# adapted from https://askubuntu.com/a/795406/501568
+
+[Unit]
+Description=Link and unlink Nessus Agent
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart={{ nessus_link_command }}
+ExecStop={{ nessus_cli_path }} agent unlink
+
+[Install]
+WantedBy=multi-user.target
