@@ -11,3 +11,11 @@ nessus_agent_package: 'NessusAgent'
 
 nessus_agent_host: cloud.tenable.com
 nessus_agent_port: 443
+
+nessus_cli_path: /opt/nessus_agent/sbin/nessuscli
+nessus_link_command: >
+  {{ nessus_cli_path }} agent link \
+    --key={{nessus_agent_key}} \
+    --host={{nessus_agent_host}} \
+    --port={{nessus_agent_port}} \
+    --groups="{{nessus_agent_group}}"

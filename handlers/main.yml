@@ -1,4 +1,6 @@
 ---
-
 - name: restart nessusagent
   service: name=nessusagent state=restarted
+
+- name: restart nessus_link
+  systemd: name=nessus_link state=restarted daemon_reload=true

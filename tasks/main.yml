@@ -8,22 +8,18 @@
   apt: deb={{nessus_agent_package}}
   when: "'.deb' in nessus_agent_package"
 
-- name: Check agent link status
-  command: /opt/nessus_agent/sbin/nessuscli agent status
-  become: yes
-  ignore_errors: yes
-  register: nessus_link
+- name: Create Nessus linking service
+  template: src=nessus_link.service dest=/etc/systemd/system/nessus_link.service
+  notify:
+    - restart nessusagent
+    - restart nessus_link
 
-- name: Configure Nessus Agent
-  command: >
-      /opt/nessus_agent/sbin/nessuscli agent link
-      --key={{nessus_agent_key}}
-      --host={{nessus_agent_host}}
-      --port={{nessus_agent_port}}
-      --groups="{{nessus_agent_group}}"
-  become: yes
-  when: nessus_link|failed
-  notify: restart nessusagent
+- name: Ensure nessus_link is started
+  service: name=nessus_link state=started enabled=yes
 
 - name: Ensure nessusagent is started
   service: name=nessusagent state=started enabled=yes
+
+- name: Check agent link status
+  command: "{{ nessus_cli_path }} agent status"
+  become: yes

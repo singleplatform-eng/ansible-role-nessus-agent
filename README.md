@@ -3,7 +3,7 @@
 ansible-role-nessus-agent
 =========
 
-Ansible role for installing and configuring Nessus Agent
+Ansible role for installing and configuring Nessus Agent. It will automatically [link](https://docs.tenable.com/nessus/7_0/Content/InstallNessusAgentLinux.htm) the Agent when the machine is started, and unlink it when the machine is stopped.
 
 https://galaxy.ansible.com/singleplatform-eng/nessus-agent/
 
