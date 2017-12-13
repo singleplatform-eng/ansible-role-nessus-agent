@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
-  remote_user: root
+- hosts: all
+  become: true
   roles:
     - ansible-role-nessus-agent

@@ -1,0 +1,6 @@
+.vagrant/
+*.log
+*.retry
+*.deb
+*.rpm
+secrets.yml
