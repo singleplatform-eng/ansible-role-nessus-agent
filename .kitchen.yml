@@ -1,10 +1,8 @@
 ---
 driver:
-  name: vagrant
-  customize:
-    # get DNS to work behind a VPN
-    # https://gist.github.com/mitchellh/1277049#gistcomment-810941
-    natdnshostresolver1: "on"
+  name: docker
+  # https://github.com/test-kitchen/kitchen-docker/issues/207#issuecomment-218544624
+  use_sudo: false
 
 provisioner:
   name: ansible_playbook

@@ -39,9 +39,8 @@ Testing Locally
 1. Ensure you have a running [Nessus Manager](https://www.tenable.com/products/nessus-vulnerability-scanner/nessus-manager) or [tenable.io](https://www.tenable.com/products/tenable-io) account and agent key.
 1. Install dependencies.
     * [Ansible](https://docs.ansible.com/ansible/latest/intro_installation.html)
+    * [Docker](https://www.docker.com/)
     * [Ruby](https://www.ruby-lang.org/)
-    * [Vagrant](https://www.vagrantup.com/intro/getting-started/install.html)
-    * [VirtualBox](https://www.virtualbox.org/)
 1. Install Test Kitchen and dependencies.
 
     ```sh
