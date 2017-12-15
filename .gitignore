@@ -4,3 +4,5 @@
 *.deb
 *.rpm
 secrets.yml
+.kitchen/
+.kitchen.local.yml

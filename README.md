@@ -39,17 +39,32 @@ Testing Locally
 1. Ensure you have a running [Nessus Manager](https://www.tenable.com/products/nessus-vulnerability-scanner/nessus-manager) or [tenable.io](https://www.tenable.com/products/tenable-io) account and agent key.
 1. Install dependencies.
     * [Ansible](https://docs.ansible.com/ansible/latest/intro_installation.html)
+    * [Ruby](https://www.ruby-lang.org/)
     * [Vagrant](https://www.vagrantup.com/intro/getting-started/install.html)
     * [VirtualBox](https://www.virtualbox.org/)
-1. [Download Nessus Agent](https://www.tenable.com/products/nessus/agent-download) for Ubuntu 16.04. Put the `*.deb` under `tests/files/`.
+1. Install Test Kitchen and dependencies.
+
+    ```sh
+    bundle
+    ```
+
+1. [Download Nessus Agent](https://www.tenable.com/products/nessus/agent-download) for Ubuntu 16.04. Put the `*.deb` under `test/integration/default/files/`.
 1. Create credentials file.
 
     ```sh
-    cp tests/group_vars/all/secrets.yml.example tests/group_vars/all/secrets.yml
+    cp test/integration/default/group_vars/all/secrets.yml.example test/integration/default/group_vars/all/secrets.yml
     ```
 
 1. Fill out `tests/group_vars/all/secrets.yml`.
-1. Run `vagrant up`.
+1. Run integration test.
+
+    ```sh
+    kitchen create
+    kitchen converge
+
+    # when done, run
+    kitchen destroy
+    ```
 
 Author Information
 ------------------
