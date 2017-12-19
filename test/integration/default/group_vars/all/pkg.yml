@@ -2,6 +2,10 @@
 nessus_agent_version: "7.0.0"
 # https://docs.tenable.com/cloud/Content/AdditionalResources/InstallNessusAgent.htm
 nessus_agent_packages:
-  CentOS: NessusAgent-{{ nessus_agent_version }}-es7.x86_64.rpm
-  Ubuntu: NessusAgent-{{ nessus_agent_version }}-ubuntu1110_amd64.deb
-nessus_agent_package: "{{ role_path }}/test/integration/default/files/{{ nessus_agent_packages[ansible_distribution] }}"
+  CentOS:
+    6: NessusAgent-{{ nessus_agent_version }}-es6.x86_64.rpm
+    7: NessusAgent-{{ nessus_agent_version }}-es7.x86_64.rpm
+  Ubuntu:
+    14: NessusAgent-{{ nessus_agent_version }}-ubuntu1110_amd64.deb
+    16: NessusAgent-{{ nessus_agent_version }}-ubuntu1110_amd64.deb
+nessus_agent_package: "{{ role_path }}/test/integration/default/files/{{ nessus_agent_packages[ansible_distribution][ansible_distribution_major_version | int] }}"

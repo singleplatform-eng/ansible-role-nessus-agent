@@ -47,7 +47,7 @@ Testing Locally
     bundle
     ```
 
-1. [Download Nessus Agent packages](https://www.tenable.com/products/nessus/agent-download) for CentOS 7 and Ubuntu 16.04. Put them under `test/integration/default/files/`.
+1. [Download Nessus Agent packages](https://www.tenable.com/products/nessus/agent-download) for CentOS 6, CentOS 7, and Ubuntu 14.04/16.04. Put them under `test/integration/default/files/`.
 1. Create credentials file.
 
     ```sh
