@@ -12,6 +12,15 @@ provisioner:
     - test/integration/default/files
 
 platforms:
+  # https://github.com/test-kitchen/kitchen-docker/issues/268#issuecomment-304141235
+  - name: centos-7
+    driver_config:
+      image: centos/systemd
+      run_command: /usr/sbin/init
+      privileged: true
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
   - name: ubuntu-16.04
 
 suites:
