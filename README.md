@@ -18,7 +18,7 @@ Role Variables
 
 - `nessus_agent_port`: nessus host port (default: `443`)
 
-- `nessus_agent_package`: can be either a repository package or a path to a file (default: `NessusAgent`)
+- `nessus_agent_package`: can be either a repository package, path to a file, or a URL (default: `NessusAgent`)
 
         nessus_agent_package: nessus-agent 
         nessus_agent_package: /tmp/nessus-agent_6.8.1_amd64.deb
