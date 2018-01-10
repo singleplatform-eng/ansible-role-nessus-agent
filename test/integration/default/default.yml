@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+    # not included by default on ubuntu:16.04 image
+    - name: Install time zone package
+      package: name=tzdata
+  roles:
+    - ansible-role-nessus-agent

@@ -1,0 +1,9 @@
+.vagrant/
+*.log
+*.retry
+*.deb
+*.rpm
+secrets.yml
+.kitchen/
+.kitchen.local.yml
+Dockerfile*

@@ -1,0 +1,32 @@
+---
+driver:
+  name: docker
+  # https://github.com/test-kitchen/kitchen-docker/issues/207#issuecomment-218544624
+  use_sudo: false
+
+provisioner:
+  name: ansible_playbook
+  hosts: instances
+  additional_copy_path:
+    # for some reason this isn't copied by default
+    - test/integration/default/files
+
+platforms:
+  # https://github.com/test-kitchen/kitchen-docker/issues/268#issuecomment-304141235
+  - name: centos-6
+    driver:
+      disable_upstart: false
+      run_command: /sbin/init
+  - name: centos-7
+    driver_config:
+      image: centos/systemd
+      run_command: /usr/sbin/init
+      privileged: true
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
+  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+
+suites:
+  - name: default
