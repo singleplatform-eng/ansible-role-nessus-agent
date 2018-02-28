@@ -1,7 +1,10 @@
 ---
 
 - name: Install Nessus Agent from repo
-  package: name={{nessus_agent_package}}
+  package:
+    name: "{{nessus_agent_package}}"
+    update_cache: yes
+    cache_valid_time: "{{apt_cache_valid_time | default (3600)}}"
   when: "'.deb' not in nessus_agent_package"
 
 - name: Install Nessus Agent from .deb package
@@ -26,4 +29,7 @@
   notify: restart nessusagent
 
 - name: Ensure nessusagent is started
-  service: name=nessusagent state=started enabled=yes
+  service:
+    name: nessusagent
+    state: started
+    enabled: yes
