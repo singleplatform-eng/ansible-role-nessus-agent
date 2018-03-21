@@ -11,3 +11,6 @@ nessus_agent_package: 'NessusAgent'
 
 nessus_agent_host: cloud.tenable.com
 nessus_agent_port: 443
+
+nessus_manage: True
+nessus_install: True
