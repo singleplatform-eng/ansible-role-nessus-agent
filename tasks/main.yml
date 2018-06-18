@@ -16,8 +16,9 @@
   - name: Check agent link status
     command: /opt/nessus_agent/sbin/nessuscli agent status
     become: yes
-    ignore_errors: yes
     register: nessus_link
+    ignore_errors: yes
+    changed_when: nessus_link.rc != 0
 
   - name: Configure Nessus Agent
     command: >
@@ -27,7 +28,7 @@
         --port={{nessus_agent_port}}
         --groups="{{nessus_agent_group}}"
     become: yes
-    when: nessus_link|failed
+    when: nessus_link is failed
     notify: restart nessusagent
 
   - name: Ensure nessusagent is started
