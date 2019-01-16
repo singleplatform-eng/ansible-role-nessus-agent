@@ -1,15 +1,12 @@
 ---
 - block:
-  - name: Install Nessus Agent from repo
-    package:
-      name: "{{nessus_agent_package}}"
-      update_cache: yes
-      cache_valid_time: "{{apt_cache_valid_time | default (omit)}}"
-    when: "'.deb' not in nessus_agent_package"
-
-  - name: Install Nessus Agent from .deb package
-    apt: deb={{nessus_agent_package}}
-    when: "'.deb' in nessus_agent_package"
+  # Install RedHat-like
+  - include: RedHat.yml
+    when: ansible_os_family == 'RedHat'
+  
+  # Install Debian-like
+  - include: Debian.yml
+    when: ansible_os_family == 'Debian'
   when: nessus_install
 
 - block:
@@ -36,4 +33,5 @@
       name: nessusagent
       state: started
       enabled: yes
+    become: yes
   when: nessus_manage
