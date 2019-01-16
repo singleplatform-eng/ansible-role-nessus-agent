@@ -1,0 +1,12 @@
+- name: Install Nessus Agent from repo
+  yum:
+    name: "{{nessus_agent_package}}"
+    state: present
+  become: yes
+  when: "'.rpm' not in nessus_agent_package"
+
+- name: Install Nessus Agent from .deb package
+  yum: 
+    name: "{{nessus_agent_package}}"
+  become: yes
+  when: "'.rpm' in nessus_agent_package"
