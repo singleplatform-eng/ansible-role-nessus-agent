@@ -1,0 +1,10 @@
+- name: Install Nessus Agent from repo
+  package:
+    name: "{{nessus_agent_package}}"
+    update_cache: yes
+    cache_valid_time: "{{apt_cache_valid_time | default (omit)}}"
+  when: "'.deb' not in nessus_agent_package"
+
+- name: Install Nessus Agent from .deb package
+  apt: deb={{nessus_agent_package}}
+  when: "'.deb' in nessus_agent_package"
